@@ -1,0 +1,11 @@
+1)Node App -> Redis (Visits = 10) 
+2)package.json d,s
+3)index.js
+4)need to connect redis
+5)docker-compose.yml
+6)
+const client = redis.createClient({
+    host: 'redis-server'
+})
+->index.js
+7)

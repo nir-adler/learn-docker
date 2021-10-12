@@ -1,0 +1,11 @@
+1)
+      - REDIS_HOST=redis
+      - REDIS_PORT=
+      - PGUSER=
+      - PGHOST=
+      - PGPASSWORD=
+      - PGDATABASE=
+      - PGPORT=
+-> docker-compose.yml
+2)mkdir nginx
+3)touch nginx/default.conf

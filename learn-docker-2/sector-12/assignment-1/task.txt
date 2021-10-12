@@ -1,0 +1,10 @@
+1)touch client-pod.yaml /simplek8s
+2)touch client-node-port.yaml
+3)
+in 1 pod we need to run 1 or more containers
+4)kubectl apply -f client-pod.yaml
+5)kubectl cluster-info
+6)kubectl apply -f client-node-port.yaml
+7)kubectl get pods
+8)kubectl get services
+9)minikube ip

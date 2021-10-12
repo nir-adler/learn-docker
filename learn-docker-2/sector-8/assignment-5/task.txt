@@ -1,0 +1,18 @@
+1)worker/Dockerfile
+2)server/Dockerfile
+3)nginx/Dockerfile
+4)client/Dockerfile
+5)touch client/nginx/default.conf
+6)git init
+7)create new repo github site -> multi-docker
+8)git push origin master
+9)travis-ci
+10).travis.yml
+11)after_success:
+-> .travis.yml
+12)add docker login cardantials travis-ci site
+DOCKER_ID
+DOCKER_PASSWORD
+13)- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+-> .travis.yml
+14)

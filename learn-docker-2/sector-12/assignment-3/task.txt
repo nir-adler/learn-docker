@@ -1,0 +1,21 @@
+1)- containerPort: 9999
+-> client-deployment.yaml
+2)kubectl describe pods
+3)replicas: 5
+-> client-deployment.yaml
+4)image: stephengrider/multi-worker
+5)replicas: 1
+ image: stephengrider/multi-client
+ - containerPort: 3000
+-> client-deployment.yaml
+6)kubectl apply -f client-deployment.yaml
+7) <p>this is some change version 2</p>
+-> client/src/App.js
+8)docker build -t ....
+docker push ....
+9)kubectl apply -f client-deployment.yaml
+10)docker push dogliy/multi-client:v2
+11)docker build -t dogliy/multi-client:v2 .
+12)docker push dogliy/multi-client:v2
+13)kubectl set image deployment/client-deployment client=dogliy/multi-client:v2
+14)eval $(minikube docker-env)

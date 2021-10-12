@@ -1,0 +1,9 @@
+1)install node.js local
+2)npx react-react-app frontend
+3)dockerfile.dev (main folder)
+4)docker run -p 3000:3000 -it -v /app/node_modules -v $(pwd):/app node-learn-2 // i dont think this need to be here :)
+5)docker-compose 
+6)command: ["npm","run","test"]
+-> docker-compose.yml
+7)make test from run docker <docker-id> npm run dev
+8)

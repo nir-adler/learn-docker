@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  redis:
+    image: redis:latest
+  web:
+    build: .
+    ports:
+      - 8081:8081

@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  client:
+    image: dogliy/multi-client
+    hostname: client
+    depends_on:
+      - backend
+    mem_limit: 128m
+  backend:
+    image: dogliy/multi-backend
+    hostname: backend
+    mem_limit: 128m
+    restart: always
+    environment:
+      - PG_HOST=$PG_HOST
+      - PG_USER=$PG_USER
+      - PG_DATABASE=$PG_DATABASE
+      - PG_PORT=$PG_PORT
+      - PG_PASSWORD=$PG_PASSWORD
+      - REDIS_HOST=$REDIS_HOST
+      - REDIS_PORT=$REDIS_PORT
+  nginx:
+    restart: always
+    mem_limit: 128m
+    hostname: nginx
+    image: dogliy/multi-nginx
+    depends_on:
+      - backend
+      - client
+    ports:
+      - 80:80
+  worker:
+    image: dogliy/multi-worker
+    mem_limit: 128m
+    hostname: worker
+    environment:
+      - REDIS_HOST=$REDIS_HOST
+      - REDIS_PORT=$REDIS_PORT
+

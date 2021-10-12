@@ -1,0 +1,28 @@
+sudo: required
+
+
+services:
+  - docker
+
+before_install:
+  - docker build -t dogliy/react-learn-1 -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true dogliy/react-learn-1 npm test
+
+after_success:
+  - docker build -t dogliy/multi-client ./client
+  - docker build -t dogliy/multi-nginx ./nginx
+  - docker build -t dogliy/multi-server ./server
+  - docker build -t dogliy/multi-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push dogliy/multi-client 
+  - docker push dogliy/multi-nginx 
+  - docker push dogliy/multi-server 
+  - docker push dogliy/multi-worker 
+
+
+
+
+
+

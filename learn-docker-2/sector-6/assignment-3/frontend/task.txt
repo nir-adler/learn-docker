@@ -1,0 +1,38 @@
+1)elastic beanstalk
+2)create application
+3)deploy:
+  provider: elasticbeanatalk
+-> .travis.yml
+4)Dockerreact-env.eba-2kwwtfcm.us-east-2.elasticbeanstalk.com 
+us-east-2
+5)s3 bucket
+elasticbeanstalk-us-east-2-745665539209
+-> aws site
+6)deploy: 
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "docker-react"
+  env: "Dockerreact-env"
+  bucket_name: elasticbeanstalk-us-east-2-745665539209
+  bucket_path: "docker-react"
+  on:
+    branch: master
+-> .travis.yml
+7)aws -> services -> iam -> users -> add users(Programmatic access)
+-> direct policies(search beanstalk) ->
+8)travis-ci.com projectname -> settings
+add keys to travis-ci.com settings ->
+9)on:
+    branch: master
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"    
+->.travis.yml
+10)git add + commit + git psu origin master
+11)EXPOSE 80
+-> Dockerfile
+12)git checkout -b feature
+-> bash-cli
+13)change text on src/App.js
+14)git push origin feature
+15)

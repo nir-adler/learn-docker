@@ -1,0 +1,11 @@
+1)multi-worker
+-> client-pod.yaml
+2)kubectl apply -f client-pod.yaml
+3)kubectl describe pod client-pod
+4) - containerPort: 9999
+-> client-pod.yaml
+5)kubectl apply -f client-pod.yaml
+6)touch client-deployment.yaml
+7)kubectl apply -f client-deployment.yaml
+8)kubectl get pods -o wide
+9)

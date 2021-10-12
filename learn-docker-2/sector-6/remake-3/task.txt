@@ -1,0 +1,4 @@
+1)Amazon Elastic Beanstalk
+-> aws.com
+create new application
+-> aws.com

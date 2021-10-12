@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  drupal:
+    image: drupal
+    ports:
+      - 80:80
+    networks:
+      - my-app
+  postgres:
+    image: postgres
+    environment:
+      - 'POSTGRES_PASSWORD=60056005'
+    networks:
+      my-app:
+        aliases:
+          - sql
+
+networks:
+  my-app:

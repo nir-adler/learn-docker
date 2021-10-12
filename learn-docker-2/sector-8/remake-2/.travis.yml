@@ -1,0 +1,34 @@
+sudo: required
+
+services:
+  - docker
+
+
+before_install:
+  - docker build -t dogliy/react-learn -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true dogliy/react-learn npm run test
+
+after_success:
+  - docker build -t dogliy/multi-client ./client
+  - docker build -t dogliy/multi-worker ./worker
+  - docker build -t dogliy/multi-server ./server
+  - docker build -t dogliy/multi-nginx ./nginx
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push dogliy/multi-client
+  - docker push dogliy/multi-worker
+  - docker push dogliy/multi-server
+  - docker push dogliy/multi-nginx
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-central-1"
+  app: "multi-docker"
+  env: "Multidocker-env"
+  bucket_name: "elasticbeanstalk-eu-central-1-745665539209"
+  bucket_path: "multi-docker"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY

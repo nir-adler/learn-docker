@@ -1,0 +1,67 @@
+1)k8s/touch client-deployment.yaml
+2)touch client-cluster-ip-service.yaml
+3)kubectl apply -f k8s
+4)touch server-deployment.yaml
+5)touch server-cluster-ip-service.yaml
+6)touch worker-deployment.yaml
+7)kubectl apply -f k8s/
+8)kubectl logs worker-deployment-54bddf8795-bvxxg
+9)touch redis-deployment.yaml
+10)touch redis-cluster-ip-service.yaml
+11)kubectl apply -f k8s/
+12)touch postgres-deployment.yaml
+13)touch postgres-cluster-ip-service.yaml
+14)kubectl apply -f k8s/
+15)touch database-persistent-volume0claim.yaml
+16)kubectl get storageclass
+17)kubectl describe storageclass
+18)volumes:
+        - name: postgres-storage
+          persistentVolumeClaim:
+            claimName: database-persistent-volume-claim
+-> postgres-deployment.yaml
+19)
+          volumeMounts:
+            - name: postgres-storage
+              mountPath: /var/lib/postgresql/data
+              subPath: postgres
+-> postgres-deployment.yaml
+20)kubectl apply -f k8s/
+21)kubectl get pv
+22)kubectl get pvc
+23)
+env:
+            - name: REDIS_HOST
+              value: redis-cluster-ip-service
+            - name: REDIS_PORT
+              value: 6379
+-> worker-deployment.yaml
+24)kubectl create secret generic pgpassword --from-literal PG_PASSWORD=password
+25)kubectl get secret
+26)
+env:
+            - name: REDIS_HOST
+              value: redis-cluster-ip-service
+            - name: REDIS_PORT
+              value: 6379
+            - name: PG_HOST
+              value: posgtres-cluster-ip-service
+            - name: PG_PORT
+              value: 5432
+            - name: PG_USER
+              value: postgres
+            - name: PG_DATABASE
+              value: postgres
+            - name: PG_PASSWORD
+-> server-deployment
+27)
+env: 
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pgpassword
+                  key: PG_PASSWORD
+-> postgres-deployment.yaml
+28)value: '6379'
+-> server-deployment + worker-deployment
+28)kubectl apply -f k8s/

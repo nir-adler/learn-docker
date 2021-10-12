@@ -1,0 +1,26 @@
+1)nginx
+2)Dockerfile
+->frontend
+3)COPY --from=builder /app/build /usr/share/nginx/html
+->Dockerfile
+4)-p 8080:80
+5)github 
+create new repository
+git init
+git add . + commit initial commit
+git remote add origin
+git push origin master
+6)travis.yml
+7).travis.yml
+8)- docker build -t dogliy/docker-react -f Dockerfile.dev . 
+-> .travis.yml
+9)docker run -e CI=true node-learn-1 npm run test
+-> bash
+10)
+script:
+  - docker run -e CI=true dogliy/docker-react npm run test
+->.travis.yml
+11)git add .
+git push origin master
+12)https://app.travis-ci.com/github/nir-adler/docker-react/jobs/535050804
+13)Elastic Beanstalk

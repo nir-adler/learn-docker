@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  redis-server:
+    image: redis
+  web-server:
+    build: .
+    ports:
+      - '8081:8081'
+
+  

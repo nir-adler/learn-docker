@@ -1,0 +1,75 @@
+1)
+  - gcloud config set project multi-k8s-328008
+  - gcloud config set compute/zone europe-central2-a	
+  - gcloud container clusters get-credentials multi-cluster
+-> .travis.yml
+2)
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker build -t dogliy/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true dogliy/react-test npm run test
+
+-> .travis.yml
+3)touch deploy.sh
+4)
+
+deploy:
+    provider: script
+    script: bash ./deploy.sh
+    on:
+      branch: master
+
+-> .travis.yml
+5)
+docker build -t dogliy/multi-client -f ./client/Dockerfile ./client
+docker build -t dogliy/multi-server -f ./server/Dockerfile ./server
+docker build -t dogliy/multi-worker -f ./worker/Dockerfile ./worker
+docker push dogliy/multi-client
+docker push dogliy/multi-server
+docker push dogliy/multi-worker
+
+kubectl apply ./k8s
+kubectl set image deployment/server-deployment server=dogliy/multi-server
+
+->deploy.sh
+6)git rev-parse HEAD
+7)
+env:
+  global:
+    - SHA=$(git rev-parse HEAD)
+    - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+
+-> .travis.yml
+8)
+docker build -t dogliy/multi-client:latest -t dogliy/multi-client:$SHA -f ./client/Dockerfile ./client
+docker build -t dogliy/multi-server:latest -t dogliy/multi-server:$SHA -f ./server/Dockerfile ./server
+docker build -t dogliy/multi-worker:latest -t dogliy/multi-worker:$SHA -f ./worker/Dockerfile ./worker
+docker push dogliy/multi-client:latest
+docker push dogliy/multi-server:latest
+docker push dogliy/multi-worker:latest
+
+docker push dogliy/multi-client:$SHA
+docker push dogliy/multi-server:$SHA
+docker push dogliy/multi-worker:$SHA
+
+kubectl apply ./k8s
+kubectl set image deployments/server-deployment server=dogliy/multi-server:$SHA
+kubectl set image deployments/client-deployment client=dogliy/multi-client:$SHA
+kubectl set image deployments/worker-deployment worker=dogliy/multi-worker:$SHA
+
+-> deploy.sh
+9) google cloud shell:
+gcloud config set project multi-k8s-328008
+gcloud config set compute/zone europe-central2-a
+gcloud container clusters get-credentials multi-cluster
+kubectl create secret generic pgpassword --from-literal PG_PASSWORD=password
+10)gcloud shell:
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+chmod 700 get_helm.sh
+./get_helm.sh
+
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm install my-release ingress-nginx/ingress-nginx
+
+11)https://kubernetes.github.io/ingress-nginx/deploy/#using-helm

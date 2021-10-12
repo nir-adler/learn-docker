@@ -1,0 +1,6 @@
+1)const process = require('process')
+process.exit(0)
+-> index.js
+2)  node-app:
+    restart: always
+->docker-compose.yml

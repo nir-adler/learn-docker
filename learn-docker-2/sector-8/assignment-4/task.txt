@@ -1,0 +1,16 @@
+1)nginx/Dockerfile.dev
+2)
+nginx:
+    restart: always
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile.dev
+-> docker-compose.yml
+3)
+  location /sockjs-node {
+        proxy_pass http://client;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "Upgrade";
+    }
+->nginx/dufalut.conf

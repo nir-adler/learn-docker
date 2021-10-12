@@ -1,0 +1,9 @@
+1)Deployment is type of controller
+2)https://www.joyfulbikeshedding.com/blog/2018-03-26-studying-the-kubernetes-ingress-system.html
+3)https://github.com/kubernetes/ingress-nginx
+4)https://kubernetes.github.io/ingress-nginx/deploy/
+5)minikube addons enable ingress
+6)touch ingress-service.yaml
+7)kubectl apply -f k8s/
+8)minikube dashboard
+9)

@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  website:
+    image: custom-drupal
+    build: .
+    ports:
+      - 80:80
+    volumes:
+      - drupal-modules:/var/www/html/modules
+      - druapl-profile:/var/www/html/profiles
+      - drupal-themes:/var/www/html/themes
+  sql:
+    image: postgres:12.1
+    volumes:
+      -  drupal-db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=60056005
+
+volumes:
+  drupal-modules:
+  druapl-profile:
+  drupal-themes:
+  drupal-db:

@@ -1,0 +1,9 @@
+1)mkdir worker
+2)npm i .....
+3)package.json dep.. and scripts
+4)keys.js
+5)index.js
+6)mkdir server
+7)npm i ....
+8)mkdir index.js / mkdir keys.js
+9)

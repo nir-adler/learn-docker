@@ -1,0 +1,24 @@
+sudo: required
+language: generic
+
+services:
+  - docker
+
+before_install:
+  - docker build -t dogliy/react-app-learn-1 -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true dogliy/react-app-learn-1 npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-central-1"
+  app: "docker-react-learn"
+  env: "Dockerreactlearn-env"
+  bucket_name: "elasticbeanstalk-eu-central-1-745665539209"
+  bucket_path: "docker-react-learn"
+  on:
+    branch: master
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key: "$AWS_SECRET_KEY"
+

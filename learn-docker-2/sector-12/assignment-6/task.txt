@@ -1,0 +1,23 @@
+1)https://cloud.google.com/products/calculator
+gke standart
+Total number of nodes in Node Pool = 3
+add to estimate
+Zonal standard PD = 2gb
+2)new github repository name: multi-k8s
+3)git remote add origin https://github.com/nir-adler/multi-k8s.git
+4)https://console.cloud.google.com/
+5)create new project
+6)enable billing 
+7)https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/11684242?start=0#overview
+8)touch .travis.yml
+9)create json from google cloud
+10)docker run -it -v $(pwd):/app ruby:2.4 sh
+gem install travis
+travis login --github-token <github-token> --pro
+copy json file from google cloud to complex folder
+mv triple-carrier-327610-cfeb4c46834b.json service-account.json
+travis encrypt-file service-account.json -r nir-adler/multi-k8s --pro 
+rm service-account.json
+11)https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
+12)git commit -m "added encrypted service account file"
+13)

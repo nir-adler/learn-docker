@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  client:
+    image: dogliy/multi-client
+    mem_limit: 128m
+    hostname: client
+  server:
+    image: dogliy/multi-server
+    mem_limit: 128m
+    hostname: api
+    environment:
+      - REDIS_HOST=$REDIS_HOST
+      - REDIS_PORT=$REDIS_PORT
+      - PG_USERNAME=$PGUSER
+      - PG_HOST=$PGHOST
+      - PG_DATABASE=$PGDATABASE
+      - PG_PORT=$PGPORT
+      - PG_PASSWORD=$PGPASSWORD
+  worker:
+    image: dogliy/multi-worker
+    mem_limit: 128m
+    hostname: worker
+    environment:
+      - REDIS_HOST=$REDIS_HOST
+      - REDIS_PORT=$REDIS_PORT
+  nginx:
+    image: dogliy/multi-nginx
+    hostname: nginx
+    mem_limit: 128m
+    ports:
+      - 80:80

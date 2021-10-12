@@ -1,0 +1,13 @@
+1)aws services go to "rds" -> click "create database(orange color)"
+-> select type of database postgres - >create the data base 
+2)aws services go to "ElastiCache" -> click on "create" -> create process
+3)services go to "vpc" -> go to "Security Groups" -> click "create security group" 
+-> go to the security group and click Inbound Rules -> click edit
+-> add rule -> source "multi docker" -> save rule
+4)aws services go to "ElastiCache" -> click on "redis" -> 
+-> click on check-box -> actions -> modify
+-> click on pencil vpc s..g.. -> select multi-docker
+5)aws services go to "elastic beanstalk" ->
+-> select application -> select enviroment
+-> configoration -> serach for ec2 security groups
+-> select multi-docker

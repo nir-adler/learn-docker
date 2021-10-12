@@ -1,0 +1,8 @@
+1)https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/28089952#questions
+2)https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html
+3)touch Dockerrun.aws.json
+4)docker-compose.dev.yml and docker-compose.yml
+5)aws create new elasticbeanstalk application
+6)aws services "vpc" -> "your vpc(left menu)";
+->Security Groups -> Inbound Rules
+7)

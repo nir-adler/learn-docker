@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  nginx:
+    image: drupal:latest
+    networks:
+      my_app_network:
+        aliases:
+          - 'webserver'
+    ports:
+      - '80:80'
+  postgres:
+    image: postgres:latest
+    networks:
+      my_app_network:
+        aliases:
+          - 'sql'
+    ports:
+      - '5432'
+    environment:
+      - 'POSTGRES_PASSWORD=60056005'
+    volumes:
+      - "/postgres-sql:/var/lib/postgresql/data"
+networks:
+  my_app_network:
+
+#volumes:
+#  postgres-db:

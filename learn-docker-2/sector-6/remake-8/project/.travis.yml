@@ -1,0 +1,13 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker build -t dogliy/react-learn -f Dockerfile.dev
+script:
+  - docker run -e CI=true dogliy/react-learn npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  

@@ -1,0 +1,40 @@
+version: '3.1'
+
+services:
+  drupal:
+    image: drupal:8.2.2
+    build: .
+    networks:
+     - my_app_network
+
+    volumes:
+      - drupal-modules:/var/www/html/modules
+      - drupal-profiles:/var/www/html/profiles
+      - drupal-sites:/var/www/html/sites
+      - drupal-themes:/var/www/html/themes
+    ports:
+      - '80:80'
+  postgres:
+    image: postgres:12.1
+    environment:
+      - POSTGRES_PASSWORD_FILE=/run/secrets/psql_pass
+    secrets:
+      - psql_pass
+    networks:
+      my_app_network:
+        aliases:
+          - sql
+    volumes:
+      - "postgres-db:/var/lib/postgresql/data"
+volumes:
+  drupal-modules:
+  drupal-profiles:
+  drupal-sites:
+  drupal-themes:
+  postgres-db:
+networks:
+  my_app_network:
+
+secrets:
+  psql_pass:
+    external: true

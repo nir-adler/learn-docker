@@ -1,0 +1,16 @@
+1)npx create-react-app client
+2)touch client/src/OtherPage.js
+3)touch client/src/Fib.js
+4)npm i react-router-dom, npm i axios
+-> client/package.json
+5)mkdir complex
+6)touch client/Dockerfile
+7)touch server/Dockerfile.dev
+8)CMD ["npm","run","dev"]
+-> server/Dockerfile.dev
+9)touch worker/Dockerfile.dev
+10)build all Dockerfile.dev files
+11)docker-compose.yml
+12)start a postgres instance
+docker image site 
+13)
