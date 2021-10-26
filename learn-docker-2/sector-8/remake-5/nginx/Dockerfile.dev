@@ -1,0 +1,6 @@
+FROM nginx:latest
+WORKDIR /data
+run mkdir www && mkdir images && mkdir up1
+COPY ./index.html ./www
+COPY ./dragon.jpg ./images
+COPY ./proxyserver/index.html ./up1

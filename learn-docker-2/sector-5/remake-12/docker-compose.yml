@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  redis:
+    image: redis:latest
+  node-app:
+    build: .
+    ports:
+      - 80:8081  
