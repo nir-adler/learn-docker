@@ -63,6 +63,7 @@ pool.connect((error) => {
 
 
 app.get('/', (req, res) => {
+    console.log(req.query)
     res.send('hello world')
 })
 
@@ -95,6 +96,7 @@ app.get('/addvalue/:number', (req, res) => {
             await client.query('INSERT INTO values (number) VALUES ($1)', [number])
             res.status(201).send()
         } catch (error) {
+            console.log(error)
             if(client){
                 client.release()
             }

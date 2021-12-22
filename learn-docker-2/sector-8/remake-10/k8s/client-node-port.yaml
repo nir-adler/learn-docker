@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: client-pod
+  labels:
+    component: client
+spec:
+  containers:
+    - name: client
+      image: dogliy/multi-client
+      ports:
+        - containerPort: 80

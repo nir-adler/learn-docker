@@ -45,6 +45,7 @@ services:
     volumes:
       - /app/node_modules
       - ./client:/app
+    stdin_open: true
   nginx:
     build:
       context: ./nginx
@@ -53,6 +54,9 @@ services:
       - ./nginx/conf:/etc/nginx/conf.d/
     ports:
       - 80:80
+    depends_on:
+      - back
+      - client
       
 
     

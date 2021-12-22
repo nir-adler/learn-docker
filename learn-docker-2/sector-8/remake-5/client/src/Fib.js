@@ -29,13 +29,14 @@ const Fib = () => {
             e.preventDefault()
 
             try {
-                await axios.get(`http://127.0.0.1:8081/addvalue/${input.value}`)
+                await axios.get(`/server/addvalue/${input.value}`)
                 apiSaved()
                 apiTemp()
                 // dispatch({ type: 'error', payload: null })
                 // console.log(response.data)
             } catch (error) {
-                console.log('here3')
+                console.log('error')
+                console.log(error)
                 // console.log(error.response.data)
                 if (error && error.response && error.response.data) {
                    
@@ -55,7 +56,7 @@ const Fib = () => {
 
         const apiSaved = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:8081/saved')
+                const response = await axios.get('/server/saved')
                 dispatch({ type: 'update_saved', payload: response.data })
             } catch (e) {
                 console.log(e)
@@ -63,7 +64,7 @@ const Fib = () => {
         }
         const apiTemp = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:8081/temp')
+                const response = await axios.get('/server/temp')
                 dispatch({ type: 'update_temp', payload: response.data })
             } catch (e) {
                 console.log(e)
